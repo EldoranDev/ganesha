@@ -73,6 +73,10 @@ class Configuration
             throw new \InvalidArgumentException(get_class($params[self::STORAGE_KEYS]) . ' should be an instance of StorageKeysInterface');
         }
 
+        if (isset($params[self::CLOCK]) && !$params[self::CLOCK] instanceof ClockInterface) {
+            throw new \InvalidArgumentException(get_debug_type($params[self::CLOCK]) . ' should be an instance of ' . ClockInterface::class);
+        }
+
         foreach ([
                 self::TIME_WINDOW,
                 self::FAILURE_RATE_THRESHOLD,

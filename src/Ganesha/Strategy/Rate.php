@@ -69,7 +69,7 @@ class Rate implements StrategyInterface
     public static function create(
         Storage\AdapterInterface $adapter,
         Configuration $configuration,
-        ?ClockInterface $clock = null
+        ?ClockInterface $clock = null,
     ): StrategyInterface {
         $clock = $clock ?? new NativeClock();
         $serviceNameDecorator = $adapter instanceof Storage\Adapter\TumblingTimeWindowInterface ? self::serviceNameDecorator($configuration->timeWindow(), $clock) : null;

@@ -48,6 +48,16 @@ class ConfigurationTest extends TestCase
 
     /**
      * @test
+     */
+    public function validateClock()
+    {
+        $this->expectExceptionMessage('DateTime should be an instance of Psr\Clock\ClockInterface');
+        $this->expectException(\InvalidArgumentException::class);
+        Configuration::validate([Configuration::CLOCK => new \DateTime()]);
+    }
+
+    /**
+     * @test
      * @dataProvider validateIntegerProvider
      */
     public function validateInteger(string $key)
